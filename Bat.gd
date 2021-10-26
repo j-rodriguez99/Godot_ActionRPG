@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-var knockback : Vector2 = Vector2.ZERO
+var knockback : Vector2 = Vector2(0,1)
 onready var stats : Node = $Stats
 const Bat_death_effect = preload("res://Effects/BatDeathEffect.tscn")
 

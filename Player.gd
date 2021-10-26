@@ -26,7 +26,6 @@ var state : int = Move
 
 
 func _ready() -> void:
-	sword_hitbox.knockback_vector = Vector2.ZERO
 	animation_tree.active = true
 	
 
@@ -65,7 +64,7 @@ func move_state(delta: float) -> void:
 	else:
 		animation_state.travel("Idle") 
 		velocity = velocity.move_toward(Vector2.ZERO, delta * Friction)
-	
+		
 	velocity = move_and_slide(velocity)
 	
 	if Input.is_action_pressed("Attack"):

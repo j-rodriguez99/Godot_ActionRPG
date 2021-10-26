@@ -1,4 +1,4 @@
 extends "res://Hurtboxes and Hitboxes/Hitbox.gd"
 
+onready var knockback_vector = Vector2.DOWN
 
-var knockback_vector = Vector2.ZERO
