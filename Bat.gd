@@ -8,7 +8,7 @@ var player
 var velocity = Vector2.ZERO
 var  state = IDLE
 
-const MAX_SPEED = 110
+const MAX_SPEED = 100
 var player_direction 
 
 enum {
@@ -29,7 +29,7 @@ func _physics_process(delta: float) -> void:
 			pass
 		CHASE:
 			player_direction = global_position.direction_to(player.global_position)
-			velocity = velocity.move_toward(MAX_SPEED * player_direction, delta * 100)
+			velocity = velocity.move_toward(MAX_SPEED * player_direction, delta * 130)
 	
 	velocity = move_and_slide(velocity)
 
