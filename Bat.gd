@@ -17,7 +17,10 @@ enum {
 	CHASE
 }
 
-
+func _ready():
+	var animated_sprite = $AnimatedSprite
+	animated_sprite.playing = true
+	
 func _physics_process(delta: float) -> void:
 	knockback = knockback.move_toward(Vector2.ZERO, delta * 100)
 	knockback = move_and_slide(knockback)
