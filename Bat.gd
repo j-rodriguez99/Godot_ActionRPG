@@ -4,6 +4,8 @@ var knockback : Vector2 = Vector2(0,1)
 onready var stats : Node = $Stats
 const Bat_death_effect = preload("res://Effects/BatDeathEffect.tscn")
 
+onready var animated_sprite = $AnimatedSprite
+
 var player
 var player_direction 
 var velocity = Vector2.ZERO
@@ -20,7 +22,6 @@ enum {
 }
 
 func _ready():
-	var animated_sprite = $AnimatedSprite
 	animated_sprite.playing = true
 	
 func _physics_process(delta: float) -> void:
@@ -34,6 +35,7 @@ func _physics_process(delta: float) -> void:
 			pass
 		CHASE:
 			player_direction = global_position.direction_to(player.global_position)
+			animated_sprite.flip_h = player.global_position.x < global_position.x
 			velocity = velocity.move_toward(MAX_SPEED * player_direction, delta * ACCELERATION)
 	
 	velocity = move_and_slide(velocity)
