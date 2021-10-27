@@ -5,11 +5,13 @@ onready var stats : Node = $Stats
 const Bat_death_effect = preload("res://Effects/BatDeathEffect.tscn")
 
 var player
+var player_direction 
 var velocity = Vector2.ZERO
 var  state = IDLE
 
-const MAX_SPEED = 100
-var player_direction 
+const MAX_SPEED = 95
+const DECELERATION = 100
+const ACCELERATION = 130
 
 enum {
 	IDLE,
@@ -22,23 +24,23 @@ func _ready():
 	animated_sprite.playing = true
 	
 func _physics_process(delta: float) -> void:
-	knockback = knockback.move_toward(Vector2.ZERO, delta * 100)
+	knockback = knockback.move_toward(Vector2.ZERO, delta * DECELERATION)
 	knockback = move_and_slide(knockback)
 	
 	match state: 
 		IDLE:
-			velocity = velocity.move_toward(Vector2.ZERO, delta * 100)
+			velocity = velocity.move_toward(Vector2.ZERO, delta * DECELERATION)
 		WANDER: 
 			pass
 		CHASE:
 			player_direction = global_position.direction_to(player.global_position)
-			velocity = velocity.move_toward(MAX_SPEED * player_direction, delta * 130)
+			velocity = velocity.move_toward(MAX_SPEED * player_direction, delta * ACCELERATION)
 	
 	velocity = move_and_slide(velocity)
 
 
 func _on_Hurtbox_area_entered(area: Area2D) -> void:
-	knockback = area.knockback_vector * 100
+	knockback = area.knockback_vector * 110
 	
 	stats.health -= area.damage
 
