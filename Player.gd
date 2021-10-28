@@ -15,6 +15,7 @@ onready var animation_state : Object = animation_tree.get("parameters/playback")
 onready var sword_hitbox : Area2D = $Position2DHitboxPivot/SwordHitbox
 onready var hurtbox = $PlayerHurtbox
 onready var roll_timer : Timer = $RollTimer
+var stats = PlayerStats
 
 enum {
 	Move, 
@@ -27,6 +28,7 @@ var state : int = Move
 
 func _ready() -> void:
 	animation_tree.active = true
+	stats.connect("death", self, "game_over")
 
 
 func _physics_process(delta : float) -> void:
@@ -96,4 +98,7 @@ func _on_RollTimer_timeout():
 
 func damage_taken(_area):
 	hurtbox.show_hit()
+	stats.health -= 1
 
+func game_over():
+	queue_free()
