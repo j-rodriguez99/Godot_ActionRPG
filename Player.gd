@@ -13,6 +13,7 @@ onready var animation_tree : AnimationTree = $AnimationTree
 onready var animation_player : AnimationPlayer = $AnimationPlayer
 onready var animation_state : Object = animation_tree.get("parameters/playback")
 onready var sword_hitbox : Area2D = $Position2DHitboxPivot/SwordHitbox
+onready var hurtbox = $PlayerHurtbox
 onready var roll_timer : Timer = $RollTimer
 
 enum {
@@ -24,10 +25,9 @@ enum {
 var roll_energy : bool = true
 var state : int = Move
 
-
 func _ready() -> void:
 	animation_tree.active = true
-	
+
 
 func _physics_process(delta : float) -> void:
 	progress_bar.value = 3 - roll_timer.get_time_left()
@@ -40,8 +40,8 @@ func _physics_process(delta : float) -> void:
 			attack_state()
 		Roll: 
 			roll_state(roll_direction)
-	
-	
+
+
 func move_state(delta: float) -> void: 
 	var input_vector: Vector2 = Vector2.ZERO
 	
@@ -75,7 +75,7 @@ func move_state(delta: float) -> void:
 		roll_energy = false
 		roll_timer.start()
 
-	
+
 func attack_state() -> void:
 	velocity = Vector2.ZERO
 	animation_state.travel("Attack")
@@ -84,12 +84,16 @@ func attack_state() -> void:
 func roll_state(direction) -> void:
 	animation_state.travel("Roll") 
 	velocity = move_and_slide(direction * Roll_Speed)
-	
-	
+
+
 func _reset() -> void: 
 	state = Move
-	
-	
+
+
 func _on_RollTimer_timeout():
 	roll_energy = true
+
+
+func damage_taken(_area):
+	hurtbox.show_hit()
 

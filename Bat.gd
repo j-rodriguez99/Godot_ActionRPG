@@ -5,6 +5,7 @@ onready var stats : Node = $Stats
 const Bat_death_effect = preload("res://Effects/BatDeathEffect.tscn")
 
 onready var animated_sprite = $AnimatedSprite
+onready var hurtbox = $Hurtbox
 
 var player
 var player_direction 
@@ -63,3 +64,6 @@ func player_identified(body):
 func player_lost(_body): 
 	player = null
 	state = IDLE
+
+func damage_taken(_area):
+	hurtbox.show_hit()

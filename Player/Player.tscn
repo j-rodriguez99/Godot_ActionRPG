@@ -1,13 +1,14 @@
-[gd_scene load_steps=53 format=2]
+[gd_scene load_steps=55 format=2]
 
 [ext_resource path="res://Player/Player.png" type="Texture" id=1]
 [ext_resource path="res://Player.gd" type="Script" id=2]
 [ext_resource path="res://Hurtboxes and Hitboxes/Hitbox.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Player/swordHitbox.gd" type="Script" id=4]
+[ext_resource path="res://Hurtboxes and Hitboxes/Hurtbox.tscn" type="PackedScene" id=5]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 5.0
-height = 2.0
+radius = 3.69657
+height = 3.3196
 
 [sub_resource type="Animation" id=2]
 resource_name = "AttackDown"
@@ -612,6 +613,10 @@ bg_color = Color( 0.866667, 0.894118, 0.0588235, 1 )
 [sub_resource type="StyleBoxFlat" id=48]
 bg_color = Color( 0.0666667, 0.0666667, 0.0627451, 1 )
 
+[sub_resource type="CapsuleShape2D" id=49]
+radius = 5.3225
+height = 4.08987
+
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 2
 script = ExtResource( 2 )
@@ -658,6 +663,7 @@ position = Vector2( 0, -4 )
 rotation = 1.5708
 
 [node name="SwordHitbox" parent="Position2DHitboxPivot" instance=ExtResource( 3 )]
+visible = false
 position = Vector2( 15, 0 )
 collision_mask = 8
 script = ExtResource( 4 )
@@ -674,6 +680,7 @@ __meta__ = {
 }
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
+visible = false
 margin_left = -15.0
 margin_top = -30.0
 margin_right = 15.0
@@ -688,6 +695,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="PlayerHurtbox" parent="." instance=ExtResource( 5 )]
+collision_layer = 4
+
+[node name="CollisionShape2D" parent="PlayerHurtbox" index="0"]
+position = Vector2( 0, -4.505 )
+shape = SubResource( 49 )
+
 [connection signal="timeout" from="RollTimer" to="." method="_on_RollTimer_timeout"]
 
 [editable path="Position2DHitboxPivot/SwordHitbox"]
+[editable path="PlayerHurtbox"]
