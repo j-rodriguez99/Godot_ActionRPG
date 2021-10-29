@@ -629,19 +629,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 0.866667, 0.764706, 0.764706, 1 ), Color( 0.796078, 0.658824, 0.658824, 1 ), Color( 0.709804, 0.537255, 0.537255, 1 ), Color( 0.615686, 0.407843, 0.407843, 1 ), Color( 0.403922, 0.184314, 0.184314, 1 ), Color( 0.615686, 0.407843, 0.407843, 1 ), Color( 0.709804, 0.537255, 0.537255, 1 ), Color( 0.796078, 0.658824, 0.658824, 1 ), Color( 0.866667, 1, 1, 1 ), Color( 1, 1, 1, 1 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:self_modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0.392157 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.392157 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.392157 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.392157 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ) ]
+"values": [ Color( 1, 1, 1, 0.392157 ), Color( 0.866667, 0.764706, 0.764706, 1 ), Color( 0.796078, 0.658824, 0.658824, 0.392157 ), Color( 0.709804, 0.537255, 0.537255, 1 ), Color( 0.615686, 0.407843, 0.407843, 0.392157 ), Color( 0.403922, 0.184314, 0.184314, 1 ), Color( 0.615686, 0.407843, 0.407843, 0.392157 ), Color( 0.709804, 0.537255, 0.537255, 1 ), Color( 0.796078, 0.658824, 0.658824, 0.392157 ), Color( 0.866667, 1, 1, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
 [node name="Player" type="KinematicBody2D"]

@@ -106,10 +106,9 @@ func damage_taken(_area):
 	add_child(timer)
 	timer.connect("timeout", self, "enable_zone")
 	timer.one_shot = true
-	timer.set_wait_time(1.1)
+	timer.set_wait_time(1)
 	timer.start()
 	animation_player_two.play("DamageTaken")
-#	make the player blink effect. 
 
 func enable_zone():
 	hurtbox_zone.set_deferred("disabled", false)
