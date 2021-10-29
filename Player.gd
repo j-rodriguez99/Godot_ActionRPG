@@ -11,6 +11,7 @@ var roll_direction : Vector2 = Vector2.DOWN
 onready var progress_bar = $ProgressBar
 onready var animation_tree : AnimationTree = $AnimationTree
 onready var animation_player : AnimationPlayer = $AnimationPlayer
+onready var animation_player_two = $AnimationPlayer2
 onready var animation_state : Object = animation_tree.get("parameters/playback")
 onready var sword_hitbox : Area2D = $Position2DHitboxPivot/SwordHitbox
 onready var hurtbox = $PlayerHurtbox
@@ -105,8 +106,9 @@ func damage_taken(_area):
 	add_child(timer)
 	timer.connect("timeout", self, "enable_zone")
 	timer.one_shot = true
-	timer.set_wait_time(1)
+	timer.set_wait_time(1.1)
 	timer.start()
+	animation_player_two.play("DamageTaken")
 #	make the player blink effect. 
 
 func enable_zone():
