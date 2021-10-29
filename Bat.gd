@@ -81,6 +81,7 @@ func _on_Hitbox_area_entered(_area):
 	timer.set_wait_time(.15)
 	timer.start()
 
+
 func enable_zone(): 
 	deceleration = 100
 	detect_player_zone.set_deferred("disabled", false)

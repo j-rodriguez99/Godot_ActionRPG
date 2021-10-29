@@ -628,6 +628,7 @@ hframes = 60
 frame = 49
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 rotation = -1.5708
 shape = SubResource( 1 )
 
@@ -659,6 +660,7 @@ parameters/Roll/blend_position = Vector2( 0, 1 )
 parameters/Run/blend_position = Vector2( 0, 1 )
 
 [node name="Position2DHitboxPivot" type="Position2D" parent="."]
+visible = false
 position = Vector2( 0, -4 )
 rotation = 1.5708
 

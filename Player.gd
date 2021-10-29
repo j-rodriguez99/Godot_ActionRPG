@@ -14,6 +14,7 @@ onready var animation_player : AnimationPlayer = $AnimationPlayer
 onready var animation_state : Object = animation_tree.get("parameters/playback")
 onready var sword_hitbox : Area2D = $Position2DHitboxPivot/SwordHitbox
 onready var hurtbox = $PlayerHurtbox
+onready var hurtbox_zone = $PlayerHurtbox/CollisionShape2D
 onready var roll_timer : Timer = $RollTimer
 var stats = PlayerStats
 
@@ -99,6 +100,17 @@ func _on_RollTimer_timeout():
 func damage_taken(_area):
 	hurtbox.show_hit()
 	stats.health -= 1
+	hurtbox_zone.set_deferred("disabled", true)
+	var timer = Timer.new()
+	add_child(timer)
+	timer.connect("timeout", self, "enable_zone")
+	timer.one_shot = true
+	timer.set_wait_time(1)
+	timer.start()
+#	make the player blink effect. 
+
+func enable_zone():
+	hurtbox_zone.set_deferred("disabled", false)
 
 func game_over():
 	queue_free()
