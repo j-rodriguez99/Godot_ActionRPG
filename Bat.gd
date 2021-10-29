@@ -6,6 +6,8 @@ const Bat_death_effect = preload("res://Effects/BatDeathEffect.tscn")
 
 onready var animated_sprite = $AnimatedSprite
 onready var hurtbox = $Hurtbox
+onready var detect_player_zone = $DetectPlayerZone/CollisionShape2D
+
 
 var player
 var player_direction 
@@ -13,7 +15,7 @@ var velocity = Vector2.ZERO
 var  state = IDLE
 
 const MAX_SPEED = 95
-const DECELERATION = 100
+var deceleration = 100
 const ACCELERATION = 130
 
 enum {
@@ -26,12 +28,12 @@ func _ready():
 	animated_sprite.playing = true
 	
 func _physics_process(delta: float) -> void:
-	knockback = knockback.move_toward(Vector2.ZERO, delta * DECELERATION)
+	knockback = knockback.move_toward(Vector2.ZERO, delta * deceleration)
 	knockback = move_and_slide(knockback)
 	
 	match state: 
 		IDLE:
-			velocity = velocity.move_toward(Vector2.ZERO, delta * DECELERATION)
+			velocity = velocity.move_toward(Vector2.ZERO, delta * deceleration)
 		WANDER: 
 			pass
 		CHASE:
@@ -67,3 +69,20 @@ func player_lost(_body):
 
 func damage_taken(_area):
 	hurtbox.show_hit()
+
+
+func _on_Hitbox_area_entered(_area):
+	detect_player_zone.set_deferred("disabled", true)
+	deceleration = 500
+	var timer = Timer.new()
+	add_child(timer)
+	timer.connect("timeout", self, "enable_zone")
+	timer.one_shot = true
+	timer.set_wait_time(.15)
+	timer.start()
+
+func enable_zone(): 
+	deceleration = 100
+	detect_player_zone.set_deferred("disabled", false)
+
+	

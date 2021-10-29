@@ -92,6 +92,7 @@ shape = SubResource( 10 )
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
 [connection signal="death" from="Stats" to="." method="_on_Stats_death"]
+[connection signal="area_entered" from="Hitbox" to="." method="_on_Hitbox_area_entered"]
 
 [editable path="Hurtbox"]
 [editable path="DetectPlayerZone"]
