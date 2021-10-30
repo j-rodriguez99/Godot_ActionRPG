@@ -101,17 +101,9 @@ func _on_RollTimer_timeout():
 func damage_taken(_area):
 	hurtbox.show_hit()
 	stats.health -= 1
-	hurtbox_zone.set_deferred("disabled", true)
-	var timer = Timer.new()
-	add_child(timer)
-	timer.connect("timeout", self, "enable_zone")
-	timer.one_shot = true
-	timer.set_wait_time(1)
-	timer.start()
 	animation_player_two.play("DamageTaken")
+	hurtbox.hurtbox_disable_zone() 
 
-func enable_zone():
-	hurtbox_zone.set_deferred("disabled", false)
 
 func game_over():
 	queue_free()

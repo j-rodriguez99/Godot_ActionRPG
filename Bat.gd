@@ -73,7 +73,7 @@ func damage_taken(_area):
 
 func _on_Hitbox_area_entered(_area):
 	detect_player_zone.set_deferred("disabled", true)
-	deceleration = 250
+	deceleration = 300
 	var timer = Timer.new()
 	add_child(timer)
 	timer.connect("timeout", self, "enable_zone")
