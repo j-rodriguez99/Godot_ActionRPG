@@ -7,7 +7,7 @@ const Bat_death_effect = preload("res://Effects/BatDeathEffect.tscn")
 onready var animated_sprite = $AnimatedSprite
 onready var hurtbox = $Hurtbox
 onready var detect_player_zone = $DetectPlayerZone/CollisionShape2D
-
+onready var softCollision = $SoftCollision
 
 var player
 var player_direction 
@@ -43,11 +43,14 @@ func _physics_process(delta: float) -> void:
 			animated_sprite.flip_h = player.global_position.x < global_position.x
 			velocity = velocity.move_toward(MAX_SPEED * player_direction, delta * ACCELERATION)
 	
+	if softCollision.is_colliding():
+		velocity += softCollision.get_push_vector() * 120 * delta
+	
 	velocity = move_and_slide(velocity)
 
 
 func _on_Hurtbox_area_entered(area: Area2D) -> void:
-	knockback = area.knockback_vector * 110
+	knockback = area.knockback_vector * 105
 	
 	stats.health -= area.damage
 
