@@ -25,6 +25,8 @@ enum {
 }
 
 func _ready():
+	randomize()
+	animated_sprite.frame = randi() % 5
 	animated_sprite.playing = true
 	
 func _physics_process(delta: float) -> void:
