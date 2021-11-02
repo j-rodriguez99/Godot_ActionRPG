@@ -29,11 +29,15 @@ var roll_energy : bool = true
 var state : int = Move
 
 func _ready() -> void:
+	print(global_position)
 	animation_tree.active = true
 	stats.connect("death", self, "game_over")
 
 
 func _physics_process(delta : float) -> void:
+	global_position.x = clamp(global_position.x, 0, 1400)
+	global_position.y = clamp(global_position.y, 0, 1400)
+	
 	progress_bar.value = 3 - roll_timer.get_time_left()
 	progress_bar.visible = !roll_energy
 	
