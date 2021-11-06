@@ -24,7 +24,7 @@ enum {
 	CHASE
 }
 
-func _ready():
+func _ready() -> void:
 	randomize()
 	animated_sprite.frame = randi() % 5
 	animated_sprite.playing = true
