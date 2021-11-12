@@ -83,7 +83,6 @@ max_health = 2
 
 [node name="DetectPlayerZone" parent="." instance=ExtResource( 6 )]
 visible = false
-monitoring = false
 
 [node name="CollisionShape2D" parent="DetectPlayerZone" index="0"]
 position = Vector2( 0, -8 )

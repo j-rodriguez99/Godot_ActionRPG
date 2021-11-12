@@ -54,6 +54,7 @@ func _physics_process(delta: float) -> void:
 			if stateShuffleTimer.is_stopped():
 				stateShuffleTimer.start()
 		CHASE:
+			stateShuffleTimer.stop()
 			player_direction = global_position.direction_to(player.global_position)
 			animated_sprite.flip_h = player.global_position.x < global_position.x
 			velocity = velocity.move_toward(MAX_SPEED * player_direction, delta * ACCELERATION)
