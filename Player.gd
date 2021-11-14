@@ -18,6 +18,7 @@ onready var hurtbox = $PlayerHurtbox
 onready var hurtbox_zone = $PlayerHurtbox/CollisionShape2D
 onready var roll_timer : Timer = $RollTimer
 var stats = PlayerStats
+var player_hurt_sound = preload("res://PlayerDeathSound.tscn")
 
 enum {
 	Move, 
@@ -107,6 +108,7 @@ func damage_taken(_area):
 	stats.health -= 1
 	animation_player_two.play("DamageTaken")
 	hurtbox.hurtbox_disable_zone() 
+	get_tree().current_scene.add_child(player_hurt_sound.instance())
 
 
 func game_over():

@@ -761,7 +761,6 @@ position = Vector2( 281.122, 721.572 )
 position = Vector2( 214.811, 101.493 )
 current = true
 process_mode = 0
-smoothing_enabled = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
