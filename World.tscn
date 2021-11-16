@@ -563,7 +563,7 @@ position = Vector2( 403.851, 338.312 )
 position = Vector2( 754.455, 416.224 )
 
 [node name="Player" parent="YSort" instance=ExtResource( 2 )]
-position = Vector2( 100, 20 )
+position = Vector2( 214.811, 101.493 )
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="YSort/Player"]
 remote_path = NodePath("../../../Camera2D")
@@ -758,7 +758,7 @@ position = Vector2( 259.213, 701.787 )
 position = Vector2( 281.122, 721.572 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 100, 20 )
+position = Vector2( 214.811, 101.493 )
 current = true
 process_mode = 0
 smoothing_enabled = true

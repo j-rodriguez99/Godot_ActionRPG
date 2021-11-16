@@ -8,11 +8,14 @@ onready var animated_sprite = $AnimatedSprite
 onready var hurtbox = $Hurtbox
 onready var detect_player_zone = $DetectPlayerZone/CollisionShape2D
 onready var softCollision = $SoftCollision
+onready var wanderController = $WanderController
+onready var stateShuffleTimer = $StateShuffleTimer
 
 var player
 var player_direction 
 var velocity = Vector2.ZERO
-var  state = IDLE
+const WANDER_SPEED = 25
+var  state
 
 const MAX_SPEED = 95
 var deceleration = 100
@@ -28,6 +31,8 @@ func _ready() -> void:
 	randomize()
 	animated_sprite.frame = randi() % 5
 	animated_sprite.playing = true
+	stateShuffleTimer.connect("timeout", self, "state_shuffle")
+	state_shuffle()
 	
 func _physics_process(delta: float) -> void:
 	knockback = knockback.move_toward(Vector2.ZERO, delta * deceleration)
@@ -36,9 +41,20 @@ func _physics_process(delta: float) -> void:
 	match state: 
 		IDLE:
 			velocity = velocity.move_toward(Vector2.ZERO, delta * deceleration)
+			if stateShuffleTimer.is_stopped():
+				stateShuffleTimer.start()
+				
 		WANDER: 
-			pass
+			velocity = velocity.move_toward(WANDER_SPEED * wanderController.direction(), delta * ACCELERATION)
+			if position.distance_to(wanderController.target_location) < 10:
+				wanderController.set_target_location()
+			elif is_on_wall():
+				wanderController.set_target_location()
+			
+			if stateShuffleTimer.is_stopped():
+				stateShuffleTimer.start()
 		CHASE:
+			stateShuffleTimer.stop()
 			player_direction = global_position.direction_to(player.global_position)
 			animated_sprite.flip_h = player.global_position.x < global_position.x
 			velocity = velocity.move_toward(MAX_SPEED * player_direction, delta * ACCELERATION)
@@ -91,4 +107,6 @@ func enable_zone():
 	deceleration = 100
 	detect_player_zone.set_deferred("disabled", false)
 
-	
+func state_shuffle(): 
+	state = wanderController.state_shuffle([WANDER, IDLE])
+
