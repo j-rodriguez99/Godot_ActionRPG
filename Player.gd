@@ -30,7 +30,6 @@ var roll_energy : bool = true
 var state : int = Move
 
 func _ready() -> void:
-	print(global_position)
 	animation_tree.active = true
 	stats.connect("death", self, "game_over")
 
@@ -103,11 +102,11 @@ func _on_RollTimer_timeout():
 	roll_energy = true
 
 
-func damage_taken(_area):
+func damage_taken(area):
 	hurtbox.show_hit()
-	stats.health -= 1
+	stats.health -= area.damage
 	animation_player_two.play("DamageTaken")
-	hurtbox.hurtbox_disable_zone() 
+	hurtbox.disable_zone(1.05) 
 	get_tree().current_scene.add_child(player_hurt_sound.instance())
 
 

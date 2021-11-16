@@ -40,6 +40,7 @@ func _physics_process(delta: float) -> void:
 	
 	match state: 
 		IDLE:
+			animated_sprite.self_modulate = Color(1, 1, 1, 1)
 			velocity = velocity.move_toward(Vector2.ZERO, delta * deceleration)
 			if stateShuffleTimer.is_stopped():
 				stateShuffleTimer.start()
@@ -55,6 +56,7 @@ func _physics_process(delta: float) -> void:
 				stateShuffleTimer.start()
 		CHASE:
 			stateShuffleTimer.stop()
+			animated_sprite.self_modulate = Color(.65, .12, .12, 1) 
 			player_direction = global_position.direction_to(player.global_position)
 			animated_sprite.flip_h = player.global_position.x < global_position.x
 			velocity = velocity.move_toward(MAX_SPEED * player_direction, delta * ACCELERATION)
@@ -67,7 +69,6 @@ func _physics_process(delta: float) -> void:
 
 func _on_Hurtbox_area_entered(area: Area2D) -> void:
 	knockback = area.knockback_vector * 105
-	
 	stats.health -= area.damage
 
 func _on_Stats_death() -> void:
@@ -90,22 +91,10 @@ func player_lost(_body):
 
 func damage_taken(_area):
 	hurtbox.show_hit()
-
+#	hurtbox.disable_zone(.8)
 
 func _on_Hitbox_area_entered(_area):
-	detect_player_zone.set_deferred("disabled", true)
-	deceleration = 300
-	var timer = Timer.new()
-	add_child(timer)
-	timer.connect("timeout", self, "enable_zone")
-	timer.one_shot = true
-	timer.set_wait_time(.15)
-	timer.start()
-
-
-func enable_zone(): 
-	deceleration = 100
-	detect_player_zone.set_deferred("disabled", false)
+	velocity = Vector2.ZERO
 
 func state_shuffle(): 
 	state = wanderController.state_shuffle([WANDER, IDLE])

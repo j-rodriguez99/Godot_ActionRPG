@@ -12,13 +12,13 @@ func show_hit():
 	hit_effect_node.global_position = global_position
 
 
-func hurtbox_disable_zone(): 
+func disable_zone(time): 
 	collision_zone.set_deferred("disabled", true)
 	var timer = Timer.new()
 	add_child(timer)
 	timer.connect("timeout", self, "enable_zone")
 	timer.one_shot = true
-	timer.set_wait_time(1.05)
+	timer.set_wait_time(time)
 	timer.start()
 	
 func enable_zone():

@@ -75,6 +75,7 @@ visible = false
 collision_layer = 8
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
+visible = false
 position = Vector2( 0, -10 )
 shape = SubResource( 8 )
 
@@ -85,10 +86,12 @@ max_health = 2
 visible = false
 
 [node name="CollisionShape2D" parent="DetectPlayerZone" index="0"]
+visible = false
 position = Vector2( 0, -8 )
 shape = SubResource( 9 )
 
 [node name="Hitbox" parent="." instance=ExtResource( 7 )]
+visible = false
 collision_mask = 4
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
@@ -96,6 +99,7 @@ position = Vector2( 0.5, -15.851 )
 shape = SubResource( 10 )
 
 [node name="SoftCollision" parent="." instance=ExtResource( 8 )]
+visible = false
 
 [node name="CollisionShape2D" parent="SoftCollision" index="0"]
 shape = SubResource( 11 )
