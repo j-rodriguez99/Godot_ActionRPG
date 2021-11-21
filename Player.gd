@@ -19,6 +19,7 @@ onready var hurtbox_zone = $PlayerHurtbox/CollisionShape2D
 onready var roll_timer : Timer = $RollTimer
 var stats = PlayerStats
 var player_hurt_sound = preload("res://PlayerDeathSound.tscn")
+var menu = load("res://Menu.tscn")
 
 enum {
 	Move, 
@@ -111,4 +112,7 @@ func damage_taken(area):
 
 
 func game_over():
+# warning-ignore:return_value_discarded
+	get_tree().change_scene_to(menu)
+	stats.health = 4
 	queue_free()
