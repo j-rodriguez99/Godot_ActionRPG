@@ -1,7 +1,7 @@
 extends Control
 
-onready var start = $HBoxContainer/VBoxContainer/Start
-onready var fox_sprite = $HBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer2/Sprite
+onready var start = $HBoxContainer/MenuButtons/Start
+onready var fox_sprite = $HBoxContainer/CharacterSelect/SelectionTextures/SpriteContainer/Sprite
 
 func _ready(): 
 	start.grab_focus()
