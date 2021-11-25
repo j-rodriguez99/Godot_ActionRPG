@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Menu.gd" type="Script" id=1]
 [ext_resource path="res://UI/Roboto-Regular.ttf" type="DynamicFontData" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://UI/left.png" type="Texture" id=4]
 [ext_resource path="res://UI/right.png" type="Texture" id=5]
 [ext_resource path="res://Player/Player.png" type="Texture" id=6]
+[ext_resource path="res://Player/Minotaur - edit.png" type="Texture" id=7]
 
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 2 )
@@ -121,8 +122,12 @@ texture = ExtResource( 6 )
 hframes = 60
 
 [node name="BullSprite" type="Sprite" parent="HBoxContainer/CharacterSelect/SelectionTextures/SpriteContainer"]
-position = Vector2( 22.4166, 22.9996 )
-hframes = 60
+visible = false
+position = Vector2( 17.0712, 26.1177 )
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 7 )
+hframes = 9
+vframes = 20
 
 [node name="RightArrow" type="TextureButton" parent="HBoxContainer/CharacterSelect/SelectionTextures"]
 margin_left = 94.0
